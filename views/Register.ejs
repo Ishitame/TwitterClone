@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  </style>
+</head>
+
+<body class="bg-[#1D1F23] text-white font-sans" style="font-family: 'Inter', sans-serif;">
+
+  <div class="min-h-screen flex items-center justify-center">
+    <div class="absolute inset-0 flex justify-center items-center z-0">
+      <div class="text-gray-500 text-[200px] font-bold opacity-10">
+        X
+      </div>
+    </div>
+
+    <div class="bg-black w-[400px] rounded-xl p-6 shadow-lg z-10">
+      <!-- Close Icon -->
+      <div class="flex justify-end mb-4">
+        <a href="\">  <i class="ri-close-line text-white text-2xl cursor-pointer"></i></a>
+        </div>
+      <!-- Logo -->
+      <div class="flex justify-center mb-4">
+         <img src=https://freepnglogo.com/images/all_img/1725374683twitter-x-logo.png class="w-32 h-32">
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-center text-xl font-bold mb-6">Create your account</h1>
+
+      <% if(error) { %>
+        <small class="text-red-500">
+            <%= error %>
+        </small>
+        <% } %>
+
+      <!-- Form -->
+      <form action="/pregister" method="post">
+
+        <!-- Name Input -->
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-semibold mb-1">Email</label>
+          <input type="email" id="email" name='email' placeholder="email"
+            class="w-full border border-gray-500 rounded-lg px-4 py-2 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          
+        </div>
+        
+        <!-- Name Input -->
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-semibold mb-1">Username</label>
+          <input type="text" id="username" name='username'placeholder="username"
+            class="w-full border border-gray-500 rounded-lg px-4 py-2 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        
+        </div>
+
+
+        <!-- Email Input -->
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-semibold mb-1">Password</label>
+          <input type="password" id="password" name='password'placeholder="password"
+            class="w-full border border-gray-500 rounded-lg px-4 py-2 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <!-- Date of Birth
+        <div class="mb-6">
+          <label class="block text-sm font-semibold mb-2">Date of birth</label>
+          <p class="text-sm text-gray-500 mb-3">This will not be shown publicly. Confirm your own age, even if this
+            account is for a business, a pet, or something else.</p>
+          <div class="grid grid-cols-3 gap-2">
+            <select
+              class="w-full border border-gray-500 rounded-lg px-3 py-2 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="" disabled selected>Month</option>
+            </select>
+            <select
+              class="w-full border border-gray-500 rounded-lg px-3 py-2 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="" disabled selected>Day</option>
+            </select>
+            <select
+              class="w-full border border-gray-500 rounded-lg px-3 py-2 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="" disabled selected>Year</option>
+            </select>
+          </div>
+        </div> -->
+            
+        <!-- Submit Button -->
+        <button disabled
+                            class="bg-gray-700 text-white text-sm py-2 px-6 rounded-full opacity-50 cursor-not-allowed">
+                            Create account
+                        </button>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- Footer -->
+  <footer class="absolute bottom-0 w-full bg-[#1D1F23] text-gray-500 text-sm py-4">
+    <div class="container mx-auto flex flex-wrap justify-center gap-6">
+      <a href="#" class="hover:underline">About</a>
+      <a href="#" class="hover:underline">Download the X app</a>
+      <a href="#" class="hover:underline">Help Center</a>
+      <a href="#" class="hover:underline">Terms of Service</a>
+      <a href="#" class="hover:underline">Directory</a>
+      <a href="#" class="hover:underline">Settings</a>
+      <span>© 2024 X Corp.</span>
+    </div>
+  </footer>
+
+  <script>
+    const inputs=document.querySelectorAll('input');
+    const button=document.querySelector('button');
+
+    function checkinputs()
+    {  const allFilled = Array.from(inputs).every(input => input.value.trim().length > 0);
+      button.disabled=!allFilled;
+            button.classList.toggle('opacity-50', !allFilled);
+            button.classList.toggle('cursor-not-allowed', !allFilled);
+            button.classList.toggle('bg-blue-500', allFilled);
+            button.classList.toggle('bg-gray-700', !allFilled);
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener('input', checkinputs);
+        });
+
+  </script>
+
+</body>
+
+</html>

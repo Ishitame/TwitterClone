@@ -1,0 +1,43 @@
+<!-- Left Sidebar -->
+<div class="w-20 lg:w-64 flex-shrink-0 flex flex-col justify-between border-r border-gray-800">
+    <div class="space-y-4 lg:space-y-6 p-2 lg:p-4">
+      <!-- Logo -->
+      <div class="text-white text-2xl lg:text-3xl">
+        <i class="ri-twitter-x-line"></i>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="space-y-4 lg:space-y-6">
+        <a href="\" class="flex items-center text-white text-base lg:text-lg space-x-2 lg:space-x-4 hover:bg-gray-800 p-2 rounded">
+          <i class="ri-home-5-line text-xl lg:text-2xl"></i>
+          <span class="hidden lg:inline">Home</span>
+        </a>
+        <a href="#" class="flex items-center text-white text-base lg:text-lg space-x-2 lg:space-x-4 hover:bg-gray-800 p-2 rounded">
+          <i class="ri-search-line text-xl lg:text-2xl"></i>
+          <span class="hidden lg:inline">Explore</span>
+        </a>
+        <a href="#" class="flex items-center text-white text-base lg:text-lg space-x-2 lg:space-x-4 hover:bg-gray-800 p-2 rounded">
+          <i class="ri-notification-3-line text-xl lg:text-2xl"></i>
+          <span class="hidden lg:inline">Notifications</span>
+        </a>
+        <a href="#" class="flex items-center text-white text-base lg:text-lg space-x-2 lg:space-x-4 hover:bg-gray-800 p-2 rounded">
+          <i class="ri-mail-line text-xl lg:text-2xl"></i>
+          <span class="hidden lg:inline">Messages</span>
+        </a>
+        <a href="\profile\<%=user.username%>" class="flex items-center text-white text-base lg:text-lg space-x-2 lg:space-x-4 hover:bg-gray-800 p-2 rounded">
+          <i class="ri-user-line text-xl lg:text-2xl"></i>
+          <span class="hidden lg:inline">Profile</span>
+        </a>
+      </nav>
+
+      <a href="\logout" class="flex items-center text-white text-base lg:text-lg space-x-2 lg:space-x-4 hover:bg-gray-800 p-2 rounded">
+        <i class="ri-logout-circle-r-line  text-xl lg:text-2xl"></i>
+        <span class="hidden lg:inline">LogOut</span>
+      </a>
+
+      <!-- Post Button -->
+      <button class="w-full bg-blue-500 text-white rounded-full py-2 px-4 font-bold hover:bg-blue-600">
+        Post
+      </button>
+    </div>
+  </div>

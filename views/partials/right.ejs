@@ -1,0 +1,160 @@
+<div class="hidden lg:block w-80 p-4">
+    <!-- Search -->
+    <div class="sticky top-0 bg-black pt-2">
+      <div class="relative">
+        <input type="text" placeholder="Search" class="w-full bg-gray-900 rounded-full py-2 px-4 pl-10 focus:outline-none">
+        <i class="ri-search-line absolute left-3 top-2.5 text-gray-500"></i>
+      </div>
+    </div>
+
+    <!-- Trending -->
+    <div class="bg-gray-900 rounded-xl mt-4 p-4">
+      <h2 class="text-xl font-bold mb-4">What's happening</h2>
+      <div class="space-y-4">
+        <div>
+          <p class="text-gray-500 text-sm">Trending</p>
+          <p class="font-bold">#Trending1</p>
+          <p class="text-gray-500 text-sm">50.4K posts</p>
+        </div>
+        <div>
+          <p class="text-gray-500 text-sm">Trending</p>
+          <p class="font-bold">#Trending2</p>
+          <p class="text-gray-500 text-sm">32.1K posts</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Who to follow -->
+    <div class="bg-gray-900 rounded-xl mt-4 p-4">
+      <h2 class="text-xl font-bold mb-4">Who to follow</h2>
+      <div class="space-y-4">
+        <% people.forEach(user=>{%>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Profile">
+            <div>
+              <p class="font-bold"><%=user.username%></p>
+              <p class="text-gray-500"><%=user.username%></p>
+            </div>
+          </div>
+          <button class="follow-btn" data-user-id="<%= user.username %>" class="bg-white text-black rounded-full px-4 py-1 font-bold hover:bg-gray-200">
+            Follow
+          </button>
+          
+        </div>
+     <% })%>
+      </div>
+    </div>
+
+    <!-- requests -->
+    <div class="bg-gray-900 rounded-xl mt-4 p-4">
+      <h2 class="text-xl font-bold mb-4">Requests</h2>
+      <div class="space-y-4">
+        <% request.forEach(user=>{%>
+        <div id="acceptrequest<%= user.username %>" class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Profile">
+            <div>
+              <p class="font-bold text-white"><%=user.username%></p>
+              <p class="text-gray-500 text-sm"><%=user.username%></p>
+            </div>
+          </div>
+          
+            <button data-user-id="<%= user.username %>" class=" accept-btn bg-blue-500 text-white rounded-full px-4 py-1 font-bold hover:bg-blue-600">
+              Accept
+            </button>
+         
+          
+            <button class="decline-btn" data-user-id="<%= user.username %>" class="bg-red-500 text-white rounded-full px-4 py-1 font-bold hover:bg-red-600">
+              <i class="ri-close-line"></i>
+            </button>
+         
+        </div>
+     <% })%>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    document.querySelectorAll('.follow-btn').forEach(button => {
+  button.addEventListener('click', function () {
+    const target = this.getAttribute('data-user-id'); // Get the user ID from the button
+
+    // Fetch API to send a friend request
+    fetch(`/profile/request/${target}`, {
+      method: 'POST', // Corrected method value
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json()) // Parse JSON response
+      .then(data => {
+        if (data.success) {
+         
+          this.innerHTML = 'Sent'; // Update button text
+          this.disabled = true; // Disable the button
+          // this.classList.add('bg-gray-500'); 
+        } else {
+          alert(data.message); // Show error message if request fails
+        }
+      })
+      .catch(error => {
+        console.error('Error sending request:', error);
+        alert('Error sending request. Please try again later.');
+      });
+  });
+});
+
+document.querySelectorAll('.accept-btn').forEach(button=>{
+  button.addEventListener('click', function () {
+   const target = this.getAttribute('data-user-id'); // Get the user ID from the data attribute
+
+      // Send an AJAX request to the back-end
+      fetch(`/profile/accept-request/${target}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Remove the request from the front-end
+          const requestDiv = document.getElementById(`acceptrequest${target}`);
+          if (requestDiv) requestDiv.remove();
+         
+         
+        } else {
+          alert(data.message); // Show an error message if something goes wrong
+        }
+      })
+      .catch(() => alert('Error processing the request.'));
+    });
+  })
+  
+    
+  document.querySelectorAll('.decline-btn').forEach(button=>{
+  button.addEventListener('click', function () {
+   const target = this.getAttribute('data-user-id'); // Get the user ID from the data attribute
+
+      // Send an AJAX request to the back-end
+      fetch(`/profile/decline-request/${target}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Remove the request from the front-end
+          const requestDiv = document.getElementById(`acceptrequest${target}`);
+          if (requestDiv) requestDiv.remove();
+         
+         
+        } else {
+          alert(data.message); // Show an error message if something goes wrong
+        }
+      })
+      .catch(() => alert('Error processing the request.'));
+    });
+  })
+  
+    
+</script>
+</body>
+</html>

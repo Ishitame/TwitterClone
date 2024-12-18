@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in to X</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+
+  <div class="w-full max-w-md bg-black rounded-lg shadow-lg p-8">
+    <!-- Close button at the top -->
+    <div class="flex justify-end mb-4">
+    <a href="\">  <i class="ri-close-line text-white text-2xl cursor-pointer"></i></a>
+    </div>
+
+    <!-- Logo -->
+    <div class="flex justify-center mb-6">
+      <i class="ri-twitter-x-line text-white text-4xl"></i>
+    </div>
+
+    <!-- Sign in to X -->
+    <h1 class="text-white text-2xl font-bold text-center mb-6">Sign in to X</h1>
+
+    <!-- Sign in with Google Button -->
+    <button class="flex items-center justify-center w-full bg-white text-black font-semibold py-2 mb-4 rounded-full">
+      <i class="ri-google-line mr-2"></i>
+      Sign in with Google
+    </button>
+
+    <!-- Sign in with Apple Button -->
+    <button class="flex items-center justify-center w-full bg-gray-200 text-black font-semibold py-2 mb-4 rounded-full">
+      <i class="ri-apple-fill mr-2"></i>
+      Sign in with Apple
+    </button>
+
+    <!-- Divider -->
+    <div class="flex items-center my-4">
+      <hr class="flex-grow border-gray-700">
+      <span class="mx-2 text-gray-500">or</span>
+      <hr class="flex-grow border-gray-700">
+    </div>
+    <% if(error) { %>
+      <small class="text-red-500">
+          <%= error %>
+      </small>
+      <% } %>
+    <form action="/plogin" method="post">
+      
+    <div class="mb-4">
+      <label for="username" class="block text-sm font-semibold mb-1">Username</label>
+      <input type="text" id="username" name='username'placeholder="username"
+        class="w-full border border-gray-500 rounded-lg px-4 py-2 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    
+    </div>
+
+
+    <!-- Email Input -->
+    <div class="mb-4">
+      <label for="password" class="block text-sm font-semibold mb-1">Password</label>
+      <input type="password" id="password" name='password'placeholder="password"
+        class="w-full border border-gray-500 rounded-lg px-4 py-2 bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <!-- Next Button
+    <button class="w-full bg-white text-black font-semibold py-2 rounded-full mb-4">Next</button> -->
+    <button type="submit" class="w-full bg-[#1D9BF0] text-white text-center rounded-full py-2 text-lg font-semibold hover:bg-[#1a8cd8] transition mb-4">
+    Login
+    </button></form>
+
+    <!-- Sign up link -->
+    <p class="text-gray-500 text-center">
+      Don't have an account? <a href="\register" class="text-blue-500">Sign up</a>
+    </p>
+  </div>
+
+</body>
+</html>
